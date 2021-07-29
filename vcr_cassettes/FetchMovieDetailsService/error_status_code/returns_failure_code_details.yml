@@ -1,0 +1,55 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://www.omdbapi.com/?apikey=dummy&i=tt0232500
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      Connection:
+      - close
+      Host:
+      - www.omdbapi.com
+      User-Agent:
+      - http.rb/5.0.1
+  response:
+    status:
+      code: 401
+      message: Unauthorized
+    headers:
+      Date:
+      - Thu, 29 Jul 2021 18:00:08 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '47'
+      Connection:
+      - close
+      Cache-Control:
+      - public, max-age=86400
+      Expires:
+      - Thu, 29 Jul 2021 18:53:33 GMT
+      Last-Modified:
+      - Thu, 29 Jul 2021 17:53:33 GMT
+      Vary:
+      - "*"
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - ASP.NET
+      Access-Control-Allow-Origin:
+      - "*"
+      Cf-Cache-Status:
+      - HIT
+      Age:
+      - '394'
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 67683ebb2a5df2b8-WAW
+    body:
+      encoding: UTF-8
+      string: '{"Response":"False","Error":"Invalid API key!"}'
+  recorded_at: Thu, 29 Jul 2021 18:00:08 GMT
+recorded_with: VCR 6.0.0

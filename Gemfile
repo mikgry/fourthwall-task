@@ -30,6 +30,8 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails'
   gem 'rswag-specs'
+  gem 'vcr'
+  gem 'webmock'
 end
 
 group :development do
@@ -41,5 +43,7 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
+gem 'dry-monads'
+gem 'http'
 gem 'rswag-api'
 gem 'rswag-ui'
