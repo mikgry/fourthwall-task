@@ -42,6 +42,7 @@ describe 'Movies API' do
             imdb_rating: { type: :string },
             runtime: { type: :string },
             released_at: { type: :string },
+            price: { type: :string },
             movie_times: { type: :array, items: {
               id: { type: :integer },
               show_at: { type: :string }

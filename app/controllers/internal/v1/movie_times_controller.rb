@@ -4,7 +4,7 @@ module Internal
       def create
         movie_time = movie.movie_times.create!(create_params)
 
-        render json: movie_time.as_json(only: [:id, :show_at]), status: 201
+        render json: movie_time, status: 201
       end
 
       def destroy

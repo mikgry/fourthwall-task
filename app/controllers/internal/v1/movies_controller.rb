@@ -3,7 +3,7 @@ module Internal
     class MoviesController < BaseController
       def update
         movie.update!(update_params)
-        render json: movie.as_json(only: [:id, :price])
+        render json: movie
       end
 
       private
