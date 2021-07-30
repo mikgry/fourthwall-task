@@ -9,4 +9,8 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  namespace :v1 do
+    resources :movies, only: %i(index)
+  end
 end
