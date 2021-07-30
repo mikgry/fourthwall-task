@@ -1,0 +1,222 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/internal/v1/movies/{movie_id}/movie_times":
+    post:
+      summary: Create movie time
+      tags:
+      - Movies
+      - MovieTimes
+      parameters:
+      - name: movie_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '201':
+          description: movie_time created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  show_at:
+                    type: string
+        '422':
+          description: wrong time value
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+        '404':
+          description: movie not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                show_at:
+                  type: string
+              required:
+              - movie_time
+  "/internal/v1/movies/{movie_id}/movie_times/{id}":
+    delete:
+      summary: Create movie time
+      tags:
+      - Movies
+      - MovieTimes
+      parameters:
+      - name: movie_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: movie_time destroyed
+        '404':
+          description: movie time not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+  "/internal/v1/movies/{id}":
+    patch:
+      summary: Set price of the movie
+      tags:
+      - Movies
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: price updated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  price:
+                    type: string
+        '422':
+          description: wrong price value
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+        '404':
+          description: movie not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                price:
+                  type: number
+              required:
+              - price
+  "/v1/movies":
+    get:
+      summary: Get all movies
+      tags:
+      - Movies
+      parameters:
+      - name: page
+        in: query
+        nullable: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: list_movies
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  id:
+                    type: integer
+                  title:
+                    type: string
+                  movie_times:
+                    type: array
+                    items:
+                      id:
+                        type: integer
+                      show_at:
+                        type: string
+  "/v1/movies/{id}":
+    get:
+      summary: Get all movies
+      tags:
+      - Movies
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: movie details
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  title:
+                    type: string
+                  description:
+                    type: string
+                  imdb_rating:
+                    type: string
+                  runtime:
+                    type: string
+                  released_at:
+                    type: string
+                  price:
+                    type: string
+                  movie_times:
+                    type: array
+                    items:
+                      id:
+                        type: integer
+                      show_at:
+                        type: string
+        '404':
+          description: movie not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+servers:
+- url: https://{defaultHost}
+  variables:
+    defaultHost:
+      default: www.example.com
