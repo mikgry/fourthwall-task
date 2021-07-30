@@ -1,5 +1,9 @@
 FactoryBot.define do
   factory :movie do
-    omdb_id { "tt1113344" }
+    sequence(:omdb_id) { |n| "tt111334#{n}" }
+
+    trait :synced do
+      omdb_synced { true }
+    end
   end
 end
