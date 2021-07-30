@@ -30,6 +30,17 @@ describe 'Movies API' do
         end
       end
 
+      response '422', 'wrong price value' do
+        schema type: :object,
+          properties: {
+            error: { type: :object }
+          }
+        let(:movie_object) { create :movie }
+        let(:movie) { { price: BigDecimal("-10.1") } }
+        let(:id) { movie_object.id }
+        run_test!
+      end
+
       response '404', 'movie not found' do
         schema type: :object,
           properties: {
