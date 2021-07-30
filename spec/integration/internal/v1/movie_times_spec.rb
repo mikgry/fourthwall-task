@@ -56,4 +56,37 @@ describe 'MovieTimes API' do
       end
     end
   end
+
+  path '/internal/v1/movies/{movie_id}/movie_times/{id}' do
+    delete 'Create movie time' do
+      tags 'Movies', 'MovieTimes'
+      consumes 'application/json'
+      produces 'application/json'
+      parameter name: :movie_id, in: :path, type: :string
+      parameter name: :id, in: :path, type: :string
+
+
+      response '204', 'movie_time destroyed' do
+        let(:movie_time) { create :movie_time, movie: movie }
+        let(:movie) { create :movie }
+        let(:movie_id) { movie.id }
+        let(:id) { movie_time.id }
+
+        run_test! do
+          expect(movie.movie_times.count).to eq(0)
+        end
+      end
+
+      response '404', 'movie time not found' do
+        schema type: :object,
+          properties: {
+            error: { type: :string }
+          }
+        let(:movie) { create :movie }
+        let(:movie_id) { movie.id }
+        let(:id) { 1 }
+        run_test!
+      end
+    end
+  end
 end

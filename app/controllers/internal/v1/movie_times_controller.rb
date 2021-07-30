@@ -7,6 +7,11 @@ module Internal
         render json: movie_time.as_json(only: [:id, :show_at]), status: 201
       end
 
+      def destroy
+        movie_time = movie.movie_times.find(params[:id])
+        movie_time.destroy!
+      end
+
       private
 
       def create_params
